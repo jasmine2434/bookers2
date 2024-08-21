@@ -1,0 +1,46 @@
+<h1>Books Edit Page</h1>
+
+  <% if @book.errors.any? %>
+    <%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  <% end %>
+
+
+<main>
+  <p class="notice"><%= notice %></p>
+  <%= yield %>
+</main>
+
+<h1>Editing Book</h1>
+
+  <% if @book.errors.any? %>
+    <%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  <% end %>
+
+  <%= form_with model: @book, method: :patch do |f| %>
+
+    <h4>Title</h4>
+      <%#= @book.title %>
+      <%= f.text_field :title %>
+
+    <h4>Opinion</h4>
+      <%#= @book.body %>
+      <%= f.text_area :body %>
+
+    <div class="actions">
+        <%= f.submit "Update Book", class: "btn btn-success"%>
+    </div>
+  <% end %>
+
+    <%= link_to "Show", book_path %>
+    <%= "|" %>
+    <%= link_to "Back", books_path %>

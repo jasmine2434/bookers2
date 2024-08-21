@@ -1,0 +1,44 @@
+<h1>Books SHOW PAGE</h1>
+
+  <main>
+    <p class="notice"><%= notice %></p>
+  </main>
+  
+  
+  
+  
+    <%=render 'book', book: @book_new, user: @book.user%>
+    
+    <div class="col-md-8 offset-md-1">
+      
+    <h1>Book detail</h1>
+          
+      <div class="table">
+        <table>
+        <tr>
+          <td>
+          <%= link_to user_path do %>
+          <%= image_tag @book.user.get_profile_image(100,100) %><br>
+          <%= @book.user.name %>
+          <% end %></td>
+          
+          <%# if @book.user == current_user %>
+          <td><%= link_to book_path(@book.id) do %>
+          <%= @book.title %>
+          <%# end %></td>
+          
+          <td><%= @book.body %></td>
+          
+            <% if @book.user == current_user %>
+          <td><%= link_to edit_book_path(@book.id), class: "btn btn-success" do %>Edit<% end %></td>
+          
+          <td><%= link_to book_path(@book.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" do %>
+          Destroy<% end %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>
